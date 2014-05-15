@@ -1,0 +1,83 @@
+$font-stack: 'Open Sans', sans-serif;
+$primary-color: #4A4A4A;
+$secondary-color: #5A4FCF;
+$bg-color: #F7F5F2;
+
+html, body {
+  height: 100%;
+}
+
+body {
+	background-color: $bg-color;
+	color: $primary-color;
+	font-family: $font-stack;
+	margin: 0px 230px;
+}
+
+.large {
+	font-size: 100px;
+}
+
+
+.firstname {
+	@extend .large;
+	position: absolute;
+	bottom: 0%;
+    right: 0%;
+    color: $secondary-color;
+    padding-bottom: 20px;
+}
+
+.large-letter {
+	font-size: 100px;
+	height: 110px;
+	width: 110px;
+	line-height: 110px; 
+	display: inline-block;
+	text-align: center;
+	vertical-align: middle;
+}
+
+.large-letter-selected {
+	@extend .large-letter;
+	background-color: $primary-color;
+	color: $bg-color;
+}
+
+.large-letter-m {
+	font-size: 80px;
+	height: 110px;
+	width: 110px;
+	line-height: 110px; 
+	display: inline-block;
+	text-align: center;
+	vertical-align: middle;
+}
+
+.large-letter-selected-m  {
+	@extend .large-letter-m;
+	background-color: $primary-color;
+	color: $bg-color;
+}
+
+.full {
+	height: 100%;
+	position: relative;
+}
+
+.happy {
+	margin-top: 40px;
+	display: inline-block;
+}
+
+.text {
+	font-size: 24px;
+	height: 110px;
+	width: 110px;
+	line-height: 110px; 
+	background-color: $primary-color;
+	color: $bg-color;
+	display: inline-block;
+		text-align: center;
+	vertical-align: middle;
+}
