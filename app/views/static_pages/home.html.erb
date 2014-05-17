@@ -1,25 +1,60 @@
+
 <div class="full">
-	<div> 
-	<span class="happy">
-		<div class="holder">
-			<span class="large-letter-selected-m">M</span>
-			<span class="text">y</span>
+	<div class="happy">
+		<div class="large-letter-m" id="m">
+			<span class="large-letter-text" id="m-first-letter">M</span>
 		</div>
-		<div class="holder">
-			<span class="large-letter-selected">A</span>
-			<span class="text">bout</span>
+		<!-- <div class="large-letter-hover" id="m-hover"></div> -->
+		<div class="large-letter" id="a">
+			<span class="large-letter-text-selected" id="a-first-letter">A</span>
 		</div>
-		<div class="holder">
-				<span class="large-letter-selected">R</span>
-				<span class="text">esume</span>
+		<!-- squares start out right here. -->
+		<div class="large-letter-hover" id="a-hover"></div>
+		<div class="clicksquare"></div>
+
+		<div class="large-letter" id="r">
+			<span class="large-letter-text" id="r-first-letter">R</span>
+		</div>
+		<div id="slidehappy"> </div>
+		<!-- <div class="large-letter-hover" id="r-hover"></div> -->
+	</div>
+	<div class="holder2">
+		<div class="happy2">
+			<div class="text text-m">
+				<span id="m-text">y</span>
+			</div>
+			<div class="text-selected">
+				<span id="a-text">bout</span>
+			</div>
+			<div class="clicksquareRight"></div>
+			<div class="text">
+				<span id="r-text">esume</span>
+			</div>	
+		</div>
+		<div class="first-letter-holder">
+			<div class="block"> </div>
+			<div id="blockslide-first-letter"> </div>
+			<span class="first-letter">D</span>
 		</div>
 	</div>
-	
-
-	</span>
-<!-- 	<span class="happy2">
-		<span class="text">bout</span>
-		<span class="text">esume</span>
-	</span> -->
-	<span class="firstname">DERRICK</span>
+	<div class="masterholder3">
+		<div class="holder3">
+			<div class="sprites">
+				<%= link_to( image_tag(asset_path('fb.png'), height: '30', width:'30', class: "icons"), "https://www.facebook.com/derricklmar", target:"_blank", title:"Facebook") %>
+				<%= link_to( image_tag(asset_path('mail.png'), height: '30', width:'30', class: "icons"), "mailto:derrickmar1215@berkeley.edu", target:"_blank", title:"derrickmar1215@berkeley.edu") %>
+			</div>
+			<p class="desc">
+				Derrick Mar is a 2nd year undergraduate at UC Berkeley double majoring in Business and Computer Science. He is interested in entrepreneurship as a means to invoke social change.
+			</p>
+			<p class="hidden">
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+			</p>
+		</div>
+		<div id="desc-block"> </div>
+		<div class="bottom-right-holder">
+			<span class="name-bottom-right">ERRICK</span>
+			<!-- <div id="bottom-right-slide"></div> -->
+			<div id="bottom-right-block"></div>
+		</div>
+	</div>
 </div>
