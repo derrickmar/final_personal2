@@ -1,351 +1,584 @@
-$font-stack: 'Open Sans', sans-serif;
-$primary-color: #4A4A4A;
-$secondary-color: #5A4FCF;
-$hover-light: #BABABA;
-$bg-color: #F7F5F2;
+	$font-stack: 'Open Sans', sans-serif;
+	$primary-color: #4A4A4A;
+	$overlay: #2E2E2E;
+	$secondary-color: #5A4FCF;
+	$hover-light: #BABABA;
+	$bg-color: #F7F5F2;
 
-@mixin smooth_transition() {
-	-webkit-transition: all 0.30s ease-in-out;
-	-moz-transition: all 0.30s ease-in-out;
-	-ms-transition: all 0.30s ease-in-out;
-	-o-transition: all 0.30s ease-in-out;
-}
-
-@mixin smooth_transition_ease($num) {
-	-webkit-transition: all $num ease;
-	-moz-transition: all $num ease;
-	-o-transition: all $num ease;
-	transition: all $num ease;
-}
-
-@mixin large-letter-hover($pos) {
-	@extend .large-letter;
-	position: absolute;
-	top: $pos;
-	background-color: $hover-light;
-	color: $bg-color;
-	z-index: -2;
-}
-
-html, body {
-	overflow-y: hidden;
-	overflow-x: hidden;
-	height: 100%;
-	width: 100%;
-	margin: 0px;
-	padding: 0px;
-}
-
-body {
-	background-color: $bg-color;
-	color: $primary-color;
-	font-family: $font-stack;
-}
-
-// columns
-
-.clicksquare {
-	height: 110px;
-	width: 110px;
-	background-color: $primary-color;
-	position: absolute;
-	top: 110px;
-	z-index: -1;
-}
-
-.clicksquareRight {
-	height: 110px;
-	width: 110px;
-	background-color: $bg-color;
-	position: absolute;
-	top: 110px;
-	z-index: -1;
-}
-
-// for padding and margin to be included in the width
-* {
-	box-sizing:border-box;
-	-moz-box-sizing:border-box;
-	-webkit-box-sizing:border-box
-}
-
-#toggle {
-	width: 100px;
-	height: 100px;
-	background: #ccc;
-}
-
-.hidden {
-	display: none;
-}
-
-.hiddenV {
-	@include smooth_transition_ease(0.5s);
-	visibility: hidden;
-}
-
-.large {
-	font-size: 100px;
-}
-
-.large-letter {
-	font-size: 100px;
-	height: 110px;
-	width: 110px;
-	line-height: 110px; 
-	display: inline-block;
-	text-align: center;
-	vertical-align: middle;
-	background-color: transparent;
-	// @include smooth_transition();
-	&:hover {
-		cursor: pointer;
-		// background-color: $hover-light;
+	@mixin smooth_transition() {
+		-webkit-transition: all 0.30s ease-in-out;
+		-moz-transition: all 0.30s ease-in-out;
+		-ms-transition: all 0.30s ease-in-out;
+		-o-transition: all 0.30s ease-in-out;
 	}
-}
 
-.large-letter-m {
-	@extend .large-letter;
-	font-size: 80px;
-}
-
-#m-hover {
-	@include large-letter-hover(0px)
-}
-
-#a-hover {
-	@include large-letter-hover(110px)
-}
-
-#r-hover {
-	@include large-letter-hover(220px)
-}
-
-.large-letter-text {
-	color: $primary-color;
-	@include smooth_transition_ease(2s);
-}
-
-.large-letter-text-selected {
-	color: $bg-color;
-	@include smooth_transition_ease(2s);
-}
-
-.large-letter-selected-m  {
-	@extend .large-letter-m;
-	background-color: $primary-color;
-	color: $bg-color;
-}
-
-
-.square {
-	height: 110px;
-	width: 110px;
-	background-color: $primary-color;
-	position: absolute;
-	top: -110px;
-	z-index: -1;
-}
-
-.full {
-	width: 865px;
-	height: 100%;
-	position: relative;
-	margin: 0px auto;
-}
-
-.happy {
-	width: 110px;
-	margin-top: 40px;
-	position: relative;
-	float: left;
-}
-
-.happy2 {
-	width: 110px;
-}
-
-.holder2 {
-	float: left;
-	width: 220px;
-	height: 100%;
-	background-color: $primary-color;
-	position: relative;
-	// needs to be less than clickSquareRight
-	z-index: -100;
-}
-
-.text {
-	font-size: 28px;
-	height: 110px;
-	width: 110px;
-	background-color: transparent;
-	// color: $bg-color;
-	position: relative;
-}
-
-.bgcolor {
-	color: $bg-color;
-	@include smooth_transition_ease(0.5s);
-}
-
-#m-text, #a-text, #r-text {
-	@include smooth_transition_ease(0.5s);
-}
-
-
-.text-selected {
-	@extend .text;
-	color: $primary-color;
-}
-
-.text:not(.text-m) span {
-	margin: 10px 10px;
-	position: absolute;
-	bottom: 0px;
-}
-
-#m-text {
-	font-size: 48px;
-	position: absolute;
-	bottom: 0px;
-	margin: 10px 15px;
-}
-
-.block {
-	width: 100%;
-	position: absolute;
-	top: 0px;
-	height: 45px;
-	background-color: $primary-color;
-	z-index: -50;
-}
-
-#blockslide-first-letter {
-	width: 100%;
-	position: absolute;
-	top: 45px;
-	height: 136px;
-	background-color: $primary-color;
-	z-index: -50;
-}
-
-.first-letter-holder {
-	line-height: 181px;
-	font-size: 200px;
-	color: $bg-color;
-	margin: 0px auto;
-	text-align: center;
-	position: relative;
-	top: 55px;
-	z-index: -1;
-}
-
-.first-letter {
-	z-index: 1;
-	background-color: transparent;
-}
-
-.masterholder3 {
-	// margin-top: 20px;
-	height: 100%;
-	float: left;
-	position: relative;
-}
-
-.holder3 {
-	margin-top: 40px;
-	width: 535px;
-	height: 390px;
-	background-color: transparent;
-	padding: 20px;
-	display:table;
-}
-
-#desc-block {
-	margin-top: 40px;
-	width: 535px;
-	height: 390px;
-	background-color: $primary-color;
-	position: absolute;
-	z-index: -1;
-	top: 0px;
-}
-
-.desc {
-	display: table-cell;
-	vertical-align: middle;
-	color: $bg-color;
-	font-size: 16px;
-}
-
-.bottom-right-holder {
-	position: relative;
-	overflow-x: visible;
-	white-space: nowrap; 
-}
-
-.name-bottom-right {
-	float: left;
-	background-color: transparent;
-	font-size: 100px;
-}
-
-#bottom-right-block {
-	width: 413px;
-	height: 136px;
-	position: absolute;
-	top: 0px;
-	background-color: $primary-color;
-	z-index: -1;
-}
-
-#bottom-right-slide {
-	float: left;
-	width: 5000px;
-	height: 136px;
-	background-color: red;
-	position: absolute;
-	z-index: -100;
-}
-
-#slidehappy {
-	background-color: $primary-color;
-	width: 400px;
-	height: 136px;
-	position: relative;
-	top: 60px;
-	right: 275px;
-	z-index: -100;
-}
-
-// Sprite stuff
-.sprites {
-	position: absolute;
-	right: 20px;
-}
-
-.icons {
-	margin: 2px;
-	@include smooth_transition();
-	&:hover {
-		transform:scale(1.03);
-		-ms-transform:scale(1.03); 
-		-moz-transform:scale(1.03); 
-		-webkit-transform:scale(1.03); 
-		-o-transform:scale(1.03);
+	@mixin smooth_transition_ease($num) {
+		-webkit-transition: all $num ease;
+		-moz-transition: all $num ease;
+		-o-transition: all $num ease;
+		transition: all $num ease;
 	}
-}
 
-// .fb {
-// 	background: url('sprites.png') no-repeat -27px -37px;
-// 	background-size: 360px 216px;
-// 	width: 144px;
-// 	height: 144px;
-// }
+	@mixin large-letter-hover($pos) {
+		@extend .large-letter;
+		position: absolute;
+		top: $pos;
+		background-color: $hover-light;
+		color: $bg-color;
+		z-index: -2;
+	}
 
-// .linkedin:hover {
-//   background: url(/assets/smi32.png) no-repeat -128px -5px;
-//   width: 32px;
-//   height: 32px;
-// }
+	@mixin rounderCorners($radius) {
+		border-radius: $radius;
+		-webkit-border-radius: $radius;
+		-moz-border-radius: $radius;
+	}
+
+	@mixin scale($size) {
+		transform:scale($size);
+		-ms-transform:scale($size); 
+		-moz-transform:scale($size); 
+		-webkit-transform:scale($size); 
+		-o-transform:scale($size);
+	}
+
+	html, body {
+		overflow-y: hidden;
+		overflow-x: hidden;
+		height: 100%;
+		width: 100%;
+		margin: 0px;
+		padding: 0px;
+	}
+
+	body {
+		background-color: $bg-color;
+		color: $primary-color;
+		font-family: $font-stack;
+	}
+
+	a {
+		text-decoration: none;
+		color: $bg-color;
+		&:hover {
+			color: $hover-light;
+		}
+	}
+
+	.link-opp {
+		text-decoration: underline;
+		font-weight: bolder;
+		color: $primary-color;
+		&:hover {
+			color: $hover-light;
+		}
+	}
+
+	.left {
+		float: left;
+	}
+
+	.right {
+		float: right;
+	}
+
+	// columns
+
+	.clicksquare {
+		height: 110px;
+		width: 110px;
+		background-color: $primary-color;
+		position: absolute;
+		top: 110px;
+		z-index: -1;
+	}
+
+	.clicksquareRight {
+		height: 110px;
+		width: 110px;
+		background-color: $bg-color;
+		position: absolute;
+		top: 110px;
+		z-index: -1;
+	}
+
+	// for padding and margin to be included in the width
+	* {
+		box-sizing:border-box;
+		-moz-box-sizing:border-box;
+		-webkit-box-sizing:border-box
+	}
+
+	#toggle {
+		width: 100px;
+		height: 100px;
+		background: #ccc;
+	}
+
+	.hidden {
+		display: none !important;
+	}
+
+	.hiddenV {
+		@include smooth_transition_ease(0.5s);
+		visibility: hidden;
+	}
+
+	.large {
+		font-size: 100px;
+	}
+
+	.large-letter {
+		font-size: 100px;
+		height: 110px;
+		width: 110px;
+		line-height: 110px; 
+		display: inline-block;
+		text-align: center;
+		vertical-align: middle;
+		background-color: transparent;
+		// @include smooth_transition();
+		&:hover {
+			cursor: pointer;
+			// background-color: $hover-light;
+		}
+	}
+
+	.large-letter-m {
+		@extend .large-letter;
+		font-size: 80px;
+	}
+
+	#m-hover {
+		@include large-letter-hover(0px)
+	}
+
+	#a-hover {
+		@include large-letter-hover(110px)
+	}
+
+	#r-hover {
+		@include large-letter-hover(220px)
+	}
+
+	.large-letter-text {
+		color: $primary-color;
+		@include smooth_transition_ease(2s);
+	}
+
+	.large-letter-text-selected {
+		color: $bg-color;
+		@include smooth_transition_ease(2s);
+	}
+
+	.large-letter-selected-m  {
+		@extend .large-letter-m;
+		background-color: $primary-color;
+		color: $bg-color;
+	}
+
+
+	.square {
+		height: 110px;
+		width: 110px;
+		background-color: $primary-color;
+		position: absolute;
+		top: -110px;
+		z-index: -1;
+	}
+
+	.full {
+		width: 865px;
+		height: 100%;
+		position: relative;
+		margin: 0px auto;
+	}
+
+	.happy {
+		width: 110px;
+		margin-top: 40px;
+		position: relative;
+		float: left;
+	}
+
+	.happy2 {
+		width: 110px;
+	}
+
+	.holder2 {
+		float: left;
+		width: 220px;
+		height: 100%;
+		background-color: $primary-color;
+		position: relative;
+		// needs to be less than clickSquareRight
+		z-index: -3;
+	}
+
+	.text {
+		font-size: 28px;
+		height: 110px;
+		width: 110px;
+		background-color: transparent;
+		// color: $bg-color;
+		position: relative;
+	}
+
+	.bgcolor {
+		color: $bg-color;
+		@include smooth_transition_ease(0.5s);
+	}
+
+	#m-text, #a-text, #r-text {
+		@include smooth_transition_ease(0.5s);
+	}
+
+
+	.text-selected {
+		@extend .text;
+		color: $primary-color;
+	}
+
+	.text:not(.text-m) span {
+		margin: 10px 10px;
+		position: absolute;
+		bottom: 0px;
+	}
+
+	#m-text {
+		font-size: 48px;
+		position: absolute;
+		bottom: 0px;
+		margin: 10px 15px;
+	}
+
+	.block {
+		width: 100%;
+		position: absolute;
+		top: 0px;
+		height: 45px;
+		background-color: $primary-color;
+		z-index: -50;
+	}
+
+	#blockslide-first-letter {
+		width: 100%;
+		position: absolute;
+		top: 45px;
+		height: 136px;
+		background-color: $bg-color;
+		z-index: -50;
+	}
+
+	.first-letter-holder {
+		line-height: 181px;
+		font-size: 200px;
+		color: $bg-color;
+		margin: 0px auto;
+		text-align: center;
+		position: relative;
+		top: 55px;
+		z-index: -1;
+	}
+
+	.first-letter {
+		z-index: 1;
+		background-color: transparent;
+		color: $hover-light;
+	}
+
+	.masterholder3 {
+		height: 100%;
+		float: left;
+		position: relative;
+	}
+
+	.holder3 {
+		// margin-top: 40px;
+		position: relative;
+		top: 40px;
+		width: 535px;
+		height: 390px;
+		background-color: transparent;
+		padding: 20px;
+		display: table;
+		z-index: 100;
+	}
+
+	#aboutDesc, #resumeDesc, #projectsDesc {
+		display: table-cell;
+		vertical-align: middle;
+		z-index: 1;	
+	}
+
+	.descOpp {
+		color: $bg-color;
+	}
+
+
+	.descp {
+		font-size: 16px;
+		// padding: 0px;
+		margin: 4px 0px;
+	}
+
+	ul {
+		margin: 0px 0px;
+	}
+
+	.headers {
+		text-decoration: underline;
+		margin-bottom: 0px;
+	}
+
+	.headers-overlay {
+		display: inline-block;
+		text-decoration: underline;
+		font-size: 24px;
+		margin: 10px 0px;
+		// font-weight: bold;
+	}
+
+	.bottom-right-holder {
+		margin-top: 40px;
+		position: relative;
+		overflow-x: visible;
+	}
+
+	.note {
+		text-decoration: underline;
+		font-size: 12px;
+		float: right;
+		&:hover {
+			color: $hover-light;
+			cursor: pointer;
+		}
+	}
+
+	.name-bottom-right {
+		float: left;
+		background-color: transparent;
+		color: $bg-color;
+		font-size: 100px;
+	}
+
+	#bottom-right-block {
+		// width: 413px;
+		width: 1000px;
+		height: 136px;
+		position: absolute;
+		top: 0px;
+		background-color: $primary-color;
+		z-index: -1;
+	}
+
+	#bottom-right-slide {
+		float: left;
+		width: 5000px;
+		height: 136px;
+		background-color: red;
+		position: absolute;
+		z-index: -100;
+	}
+
+	#slideright {
+		background-color: $primary-color;
+		width: 400px;
+		height: 136px;
+		position: relative;
+		top: 60px;
+		right: 275px;
+		z-index: -100;
+	}
+
+	/* tabs */
+	// desc block also includes background div
+	#desc-block {
+		width: 535px;
+		height: 390px;
+		background-color: $primary-color;
+		position: absolute;
+		z-index: 10;
+		top: 40px;
+	}
+
+	.tabrow, .tabrow2 {
+		margin: 0px 5px;
+		padding: 0;
+		line-height: 24px;
+		position: absolute;
+		top: 18px;
+	}
+
+	.tabrow li, .tabrow2 li {
+		margin: 0px 6px;
+		padding: 0 10px;
+		background-color: $primary-color;
+		color: $bg-color;
+		display: inline-block;
+		position: relative;
+		&:hover {
+			cursor: pointer;
+			z-index: 10;
+			background-color: grey;
+		}
+		&:hover:after {
+			cursor: pointer;
+			background-color: grey;
+		}
+		&:after {
+			display: block;
+			content:" ";
+			width: 24px;
+			height: 24px;
+			top: 0px;
+			background-color: $primary-color;
+			position: absolute;
+			right: -12px;
+			transform:skewX(45deg);
+			-ms-transform:skewX(45deg);
+			-webkit-transform:skewX(45deg);
+			z-index: -1;
+		}
+		&.selected {
+			z-index: 2;
+			background-color: grey;
+			position: relative;
+			top: -2px;
+			&:after {
+				background-color: grey;
+			}
+		}
+		&.selected2 {
+			z-index: 2;
+			background-color: grey;
+			position: relative;
+			top: -2px;
+			&:after {
+				background-color: grey;
+			}
+		}
+	}
+
+	.bold_underline {
+		font-weight: bold;
+		text-decoration: underline;
+	}
+
+	// project title stuff
+	.project-title {
+		font-size: 32px;
+		font-weight: bold;
+		// position: relative;
+		// top: -45px;
+	}
+
+	.projectTitleHolder {
+		height: 100px;
+		width: 100%;
+	}
+
+	.projectTitleContent {
+		float: left;
+		margin-left: 10px;
+	}
+
+	.subtitle {
+		font-size: 14px;
+	}
+
+	.title-and-pic {
+		display: inline-block;
+		float:right;
+	}
+
+	// buttons
+	.button {
+		background-color: $bg-color;
+		color: $primary-color;
+		padding: 10px;
+		display: inline-block;
+		@include rounderCorners(10px);
+		@include smooth_transition();
+		&:hover {
+			cursor: pointer;
+			@include scale(1.03);
+		}
+	}
+
+	.button-opp {
+		background-color: $primary-color;
+		color: $bg-color;
+		padding: 10px;
+		display: inline-block;
+		position: relative;
+		top: -10px;
+		@include rounderCorners(10px);
+		@include smooth_transition();
+		&:hover {
+			cursor: pointer;
+			@include scale(1.03);
+		}
+	}
+
+	// notifications
+	#notification {
+		padding: 30px;
+		text-align: center;
+		vertical-align: center;
+	}
+
+	// popups
+	.popup {
+		width: 100%;
+		height: 100%;
+		background-color: rgba(46s,46,46,0.5);
+		position: absolute;	
+		// display: table-cell;
+		// vertical-align: middle;
+		top: 0px;
+		padding: 0px;
+		margin: 0px;
+		z-index: 1000;
+		&:hover {
+			cursor: pointer;
+		}
+	}
+
+	.popup-content-holder {
+		background-color: $bg-color;
+		@include rounderCorners(20px);
+		width: 870px;
+		height: 500px;
+		position: absolute;
+		left: 50%;
+		top: 50%; 
+		margin-left: -435px;
+		margin-top: -250px;
+		// opacity: 1 !important;
+		z-index: 2000;
+		padding: 20px 30px;
+		&:hover {
+			cursor: initial;
+		}
+	}
+
+	#jump61-instructions {
+		font-size: 14px;
+		margin: 0px;
+		// text-indent: 1em;
+	}
+
+	// Sprite stuff
+	.sprites {
+		position: absolute;
+		right: 20px;
+	}
+
+	.icons {
+		margin: 2px;
+		@include smooth_transition();
+		&:hover {
+			@include scale(1.03);
+		}
+	}

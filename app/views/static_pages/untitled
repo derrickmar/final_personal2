@@ -1,44 +1,52 @@
-<div id="notification" class="hidden">
-	<p>
-		Sorry for the inconvenience, my website is not yet available on mobile devices yet. Please view my site on a regular-sized computer screen I'll be working on this soon! 
-	</p>
-</br>
-</br>
-	<span> Derrick Mar </span>
-</div>
+		<%= image_tag(asset_path('sprites.png')) %>
 
-<div id="jump61popup" class="popup" style="display: none;">
-	<div class="popup-content-holder">
-		<div class="title-and-pic">
-			<%= image_tag(asset_path('jump61.png'), height: '45', width:'45', class: "left") %>
-			<div class="projectTitleContent">
-				<span class="project-title">Jump61</span>
-			</div>
+<div class="large-letter-m" id="m">
+			<span class="large-letter-text" id="m-first-letter">M</span>
 		</div>
-		<div>
-			<span class="headers-overlay"> Instructions </span>
-			<p id="jump61-instructions">
-				&emsp;&emsp;&emsp;&emsp;&emsp;There are two players in this game. You and the computer (blue). You move by clicking on a <strong>vacant square</strong> or <strong>the one you already own</strong>. If you click on a <strong>vacant square</strong>, you gain an <strong>ownership</strong> over it and square’s color changes to your playing color. Each time you click on a square, the value of the square increases by one.
-				<br>
-				&emsp;&emsp;&emsp;&emsp;&emsp;If the square's value reaches is <i> overfull </i>, which means it contains more spots than it has neighbors, its points are distributed amongst the square’s immediate neighbors. Thus, the four corner squares are overfull when they have more than two spots; other squares on the edge are overfull with more than three spots; and all others are overfull with more than four spots. If a neighboring square happens to be owned by the other player, it gets taken over together with all of its points and changes color to your playing color. <strong>The winner is the player who ends up owning all the squares on the board.</strong>
-			</p>
-			<span class="headers-overlay"> Getting started </span>
-			<ul id="jump61-instructions">
-				<li> Download the zip file by clicking the button to the bottom right </li>
-				<li> Unzip the zip file and enter the directory "jump61project" <%= link_to "in a terminal", "https://www.google.com/search?q=how+to+open+a+terminal&rlz=1C5CHFA_enUS576US576&oq=how+to+open+a+terminal&aqs=chrome..69i57j0l5.3687j0j7&sourceid=chrome&es_sm=91&ie=UTF-8#q=how+do+I+open+a+terminal%3F", target: "_blank", class: "link-opp" %>.</li>
-				<li> Type in the command "java jump61.Main --display"</li>
-				<li> Note: To recompile the program type "make clean" and then "make"</li>
-			</ul>
-			<span class="headers-overlay"> Requirements </span>
-			<ul id="jump61-instructions">
-				<li> Your system must have Java SE Runtime Environment 7 installed </li>
-			</uL>
+		<div class="large-letter-hover" id="m-hover"></div>
+		<div class="large-letter-selected" id="a">
+			<span class="large-letter-text-selected" id="a-first-letter">A</span>
 		</div>
-		<%= link_to "/jump61project.zip" do %>
-			<span class="button-opp right"> Download and Play!</span>
-		<% end %>
-	</div>
-</div>
+		<div class="large-letter-hover" id="a-hover"></div>
+		<!-- <div class="square"></div> -->
+		<div class="large-letter" id="r">
+			<span class="large-letter-text" id="r-first-letter">R</span>
+		</div>
+
+		@mixin smooth_transition_ease($num) {
+	-webkit-transition: all 2s ease;
+    -moz-transition: all 2s ease;
+    -o-transition: all 2s ease;
+    transition: all 2s ease;
+}
+
+
+
+// function hoverSlide(hoverOn, shownElement, textElement, showAction, hideAction) {
+// 	$(hoverOn).hover(
+// 		function() {
+// 			if (!$(hoverOn).hasClass("large-letter-selected")) {
+// 				console.log("in hoverSlide");
+// 				$(textElement).fadeIn();
+// 				$(shownElement).show("slide", { direction: showAction }, 300);
+// 			}
+// 		}, function() {
+// 			if (!$(hoverOn).hasClass("large-letter-selected")) {
+// 				$(textElement).fadeOut();
+// 				$(shownElement).hide("slide", { direction: hideAction }, 300);
+// 			}
+// 		});
+// }
+
+				<%= link_to( image_tag(asset_path('linkedin.png'), height: '30', width:'30', class: "icons"), "mailto:derrickmar1215@berkeley.edu", target:"_blank", title:"derrickmar1215@berkeley.edu") %>
+
+<!-- 			<ul class="tabrow">
+				<li>Lorem</li>
+				<li>Ipsum</li>
+				<li class="selected">Sit amet</li>
+				<li>Consectetur adipisicing</li>
+			</ul> -->
+
 <div class="full">
 	<div class="happy">
 		<div class="large-letter-m" id="m">
@@ -84,7 +92,7 @@
 			<li>Academics</li>
 		</ul>
 		<ul class="tabrow2">
-			<li class="selected2">TaskSimply</li>
+			<li class="selected">TaskSimply</li>
 			<li>Jump61</li>
 			<li>Gym Scribe</li>
 		</ul>	
@@ -120,3 +128,16 @@
 		</div>
 	</div>
 </div>
+
+
+	<div class="popup-content-holder">
+		<%= link_to( image_tag(asset_path('t.png'), height: '90', width:'90', class: "left"), "http://tasksimply.herokuapp.com/", target:"_blank") %>
+		<div class="projectTitleContent">
+			<span class="project-title"><%= link_to "TaskSimply", "http://tasksimply.herokuapp.com/", target:"_blank"%></span>
+			<div> 
+				<span class="subtitle">Technology: <i>Ruby on Rails</i></span>
+				<br>
+				<span class="subtitle">When: <i>April 2014</i></span>
+			</div>
+		</div>
+	</div>

@@ -1,0 +1,55 @@
+<div id="tasksimply" class="descOpp">
+	<div class="projectTitleHolder">
+		<%= link_to( image_tag(asset_path('t.png'), height: '90', width:'90', class: "left"), "http://tasksimply.herokuapp.com/", target:"_blank") %>
+		<div class="projectTitleContent">
+			<span class="project-title"><%= link_to "TaskSimply", "http://tasksimply.herokuapp.com/", target:"_blank"%></span>
+			<div> 
+				<span class="subtitle">Technology: <i>Ruby on Rails</i></span>
+				<br>
+				<span class="subtitle">When: <i>April 2014</i></span>
+			</div>
+		</div>
+	</div> 
+	<p id="about">
+		TaskSimply is a web application that helps you keep track of what you need to get done. It was created to provide a free alternative to other task management services. The intuition behind the project was to provide only the most used features in a task management system in order to make it simple and easy to use.
+	</p>
+	<%= link_to "http://tasksimply.herokuapp.com/", target: "_blank" do %>
+	<span class="button right"> Go to TaskSimply</span>
+	<% end %>
+</div>
+<div id="jump61" class="descOpp hidden">
+	<div class="projectTitleHolder">
+		<%= image_tag(asset_path('jump61.png'), height: '90', width:'90', class: "left") %>
+		<div class="projectTitleContent">
+			<span class="project-title">Jump61</span>
+			<div> 
+				<span class="subtitle">Technology: <i>Java</i></span>
+				<br>
+				<span class="subtitle">When: <i>November 2012</i></span>
+			</div>
+		</div>
+	</div> 
+	<p id="about">
+		Jump61 is a board game very similar <%= link_to "KJumpingCube", "http://games.kde.org/game.php?game=kjumpingcube", class: "bold_underline", target: "_blank" %> game. Developed for my Data Structures class, I consider this project my first comprehensive programming project I have ever made :). Jump61 is a 2-player game where a human player plays against AI. The AI is developed through a minimax game tree and alpha-beta pruning. The simple Graphical User Interface is built with Java Swing.
+	</p>
+	<span id="jump61btn" class="button right"> Download and Play!</span>
+</div>
+<div id="gymscribe" class="descOpp hidden">
+	<div class="projectTitleHolder">
+		<%= link_to( image_tag(asset_path('gym.png'), height: '90', width:'90', class: "left"), "https://play.google.com/store/apps/details?id=edu.berkeley.cs160.lasercats", target:"_blank") %>
+		<div class="projectTitleContent">
+			<span class="project-title"><%= link_to "Gym Scribe", "https://play.google.com/store/apps/details?id=edu.berkeley.cs160.lasercats", target:"_blank"%></span>
+			<div> 
+				<span class="subtitle">Technology: <i>Java/Android Programming</i></span>
+				<br>
+				<span class="subtitle">When: <i>May 2014</i></span>
+			</div>
+		</div>
+	</div> 
+	<p id="about">
+		The <%= link_to "Gym Scribe", "https://play.google.com/store/apps/details?id=edu.berkeley.cs160.lasercats", class: "bold_underline", target: "_blank" %> app serves to eliminate hands from the act of recording workout information while at the gym or any workout environment. Voice inputs replace hand input to provide the user with a hands-free environment where they can focus on lifting rather than typing. This app is best used with earphones that have a mic for voice input.
+	</p>
+	<%= link_to "https://play.google.com/store/apps/details?id=edu.berkeley.cs160.lasercats", target: "_blank" do %>
+		<span class="button right"> Download the app!</span>
+	<% end %>
+</div>
