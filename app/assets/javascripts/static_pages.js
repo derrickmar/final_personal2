@@ -335,7 +335,7 @@ function hoverSlide(dom, txt, pos) {
             if ($(this).children(".large-letter-text-selected").length == 0) {
                 // console.log("moving out: " + currentSquarePos);
                 txt.removeClass('bgcolor');
-                var leavingto = event.toElement || e.relatedTarget;
+                var leavingto = e.toElement || e.relatedTarget;
                 // console.log(event.toElement || e.relatedTarget);
                 if ($(leavingto).hasClass("large-letter") ||
                     $(leavingto).hasClass("large-letter-text")) {
