@@ -43,7 +43,7 @@
 	}
 
 	html, body {
-		overflow-y: visible;
+		overflow-y: scroll;
 		overflow-x: hidden;
 		height: 100%;
 		width: 100%;
@@ -65,22 +65,43 @@
 		}
 	}
 
-	.link-opp {
-		text-decoration: underline;
-		font-weight: bolder;
-		color: $primary-color;
-		&:hover {
-			color: $hover-light;
+	.large-letter {
+		font-size: 100px;
+		height: 110px;
+		width: 110px;
+		line-height: 110px; 
+		display: inline-block;
+		text-align: center;
+		vertical-align: middle;
+		background-color: transparent;
+			// @include smooth_transition();
+			&:hover {
+				cursor: pointer;
+				// background-color: $hover-light;
+			}
 		}
-	}
 
-	.left {
-		float: left;
-	}
+		.large-letter-m {
+			@extend .large-letter;
+			font-size: 80px;
+		}
 
-	.right {
-		float: right;
-	}
+		.link-opp {
+			text-decoration: underline;
+			font-weight: bolder;
+			color: $primary-color;
+			&:hover {
+				color: $hover-light;
+			}
+		}
+
+		.left {
+			float: left;
+		}
+
+		.right {
+			float: right;
+		}
 
 	// columns
 
@@ -371,57 +392,57 @@
 	}
 
 	/* media query retina and non-retina stuff */
-	@media only screen {
-		.large-letter {
-			font-size: 50px;
-			height: 55px;
-			width: 55px;
-			line-height: 55px; 
-			display: inline-block;
-			text-align: center;
-			vertical-align: middle;
-			background-color: transparent;
-			// @include smooth_transition();
-			&:hover {
-				cursor: pointer;
-				// background-color: $hover-light;
-			}
-		}
+	// @media only screen {
+	// 	.large-letter {
+	// 		font-size: 50px;
+	// 		height: 55px;
+	// 		width: 55px;
+	// 		line-height: 55px; 
+	// 		display: inline-block;
+	// 		text-align: center;
+	// 		vertical-align: middle;
+	// 		background-color: transparent;
+	// 		// @include smooth_transition();
+	// 		&:hover {
+	// 			cursor: pointer;
+	// 			// background-color: $hover-light;
+	// 		}
+	// 	}
 
-		.large-letter-m {
-			@extend .large-letter;
-			font-size: 80px;
-		}
-	}
+	// 	.large-letter-m {
+	// 		@extend .large-letter;
+	// 		font-size: 80px;
+	// 	}
+	// }
 
-	@media
-	only screen and (-webkit-min-device-pixel-ratio: 1.75),
-	only screen and (   min--moz-device-pixel-ratio: 1.75),
-	only screen and (     -o-min-device-pixel-ratio: 1.75/1),
-	only screen and (        min-device-pixel-ratio: 1.75),
-	only screen and (                min-resolution: 168dpi),
-	only screen and (                min-resolution: 1.75dppx) {
-		.large-letter {
-			font-size: 100px;
-			height: 110px;
-			width: 110px;
-			line-height: 110px; 
-			display: inline-block;
-			text-align: center;
-			vertical-align: middle;
-			background-color: transparent;
-			// @include smooth_transition();
-			&:hover {
-				cursor: pointer;
-				// background-color: $hover-light;
-			}
-		}
+	// @media
+	// only screen and (-webkit-min-device-pixel-ratio: 1.75),
+	// only screen and (   min--moz-device-pixel-ratio: 1.75),
+	// only screen and (     -o-min-device-pixel-ratio: 1.75/1),
+	// only screen and (        min-device-pixel-ratio: 1.75),
+	// only screen and (                min-resolution: 168dpi),
+	// only screen and (                min-resolution: 1.75dppx) {
+	// 	.large-letter {
+	// 		font-size: 100px;
+	// 		height: 110px;
+	// 		width: 110px;
+	// 		line-height: 110px; 
+	// 		display: inline-block;
+	// 		text-align: center;
+	// 		vertical-align: middle;
+	// 		background-color: transparent;
+	// 		// @include smooth_transition();
+	// 		&:hover {
+	// 			cursor: pointer;
+	// 			// background-color: $hover-light;
+	// 		}
+	// 	}
 
-		.large-letter-m {
-			@extend .large-letter;
-			font-size: 80px;
-		}
-	}
+	// 	.large-letter-m {
+	// 		@extend .large-letter;
+	// 		font-size: 80px;
+	// 	}
+	// }
 
 	/* tabs */
 	// desc block also includes background div
