@@ -128,27 +128,6 @@
 		font-size: 100px;
 	}
 
-	.large-letter {
-		font-size: 100px;
-		height: 110px;
-		width: 110px;
-		line-height: 110px; 
-		display: inline-block;
-		text-align: center;
-		vertical-align: middle;
-		background-color: transparent;
-		// @include smooth_transition();
-		&:hover {
-			cursor: pointer;
-			// background-color: $hover-light;
-		}
-	}
-
-	.large-letter-m {
-		@extend .large-letter;
-		font-size: 80px;
-	}
-
 	#m-hover {
 		@include large-letter-hover(0px)
 	}
@@ -211,6 +190,7 @@
 		height: 100%;
 		background-color: $primary-color;
 		position: relative;
+		// needs to be less than clickSquareRight
 		z-index: -3;
 	}
 
@@ -382,12 +362,65 @@
 
 	#slideright {
 		background-color: $primary-color;
-		width: 1000px;
+		width: 450px;
 		height: 136px;
 		position: relative;
 		top: 60px;
 		right: 275px;
 		z-index: -100;
+	}
+
+	/* media query retina and non-retina stuff */
+	@media only screen {
+		.large-letter {
+			font-size: 50px;
+			height: 55px;
+			width: 55px;
+			line-height: 55px; 
+			display: inline-block;
+			text-align: center;
+			vertical-align: middle;
+			background-color: transparent;
+			// @include smooth_transition();
+			&:hover {
+				cursor: pointer;
+				// background-color: $hover-light;
+			}
+		}
+
+		.large-letter-m {
+			@extend .large-letter;
+			font-size: 80px;
+		}
+	}
+
+	@media
+	only screen and (-webkit-min-device-pixel-ratio: 1.5),
+	only screen and (   min--moz-device-pixel-ratio: 1.5),
+	only screen and (     -o-min-device-pixel-ratio: 1.5/1),
+	only screen and (        min-device-pixel-ratio: 1.5),
+	only screen and (                min-resolution: 144dpi),
+	only screen and (                min-resolution: 1.5dppx) {
+		.large-letter {
+			font-size: 100px;
+			height: 110px;
+			width: 110px;
+			line-height: 110px; 
+			display: inline-block;
+			text-align: center;
+			vertical-align: middle;
+			background-color: transparent;
+			// @include smooth_transition();
+			&:hover {
+				cursor: pointer;
+				// background-color: $hover-light;
+			}
+		}
+
+		.large-letter-m {
+			@extend .large-letter;
+			font-size: 80px;
+		}
 	}
 
 	/* tabs */
