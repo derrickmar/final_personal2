@@ -395,12 +395,12 @@
 	}
 
 	@media
-	only screen and (-webkit-min-device-pixel-ratio: 1.5),
-	only screen and (   min--moz-device-pixel-ratio: 1.5),
-	only screen and (     -o-min-device-pixel-ratio: 1.5/1),
-	only screen and (        min-device-pixel-ratio: 1.5),
-	only screen and (                min-resolution: 144dpi),
-	only screen and (                min-resolution: 1.5dppx) {
+	only screen and (-webkit-min-device-pixel-ratio: 1.75),
+	only screen and (   min--moz-device-pixel-ratio: 1.75),
+	only screen and (     -o-min-device-pixel-ratio: 1.75/1),
+	only screen and (        min-device-pixel-ratio: 1.75),
+	only screen and (                min-resolution: 168dpi),
+	only screen and (                min-resolution: 1.75dppx) {
 		.large-letter {
 			font-size: 100px;
 			height: 110px;
