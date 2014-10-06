@@ -17,7 +17,7 @@ gem 'sprockets'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # allows you to use jquery-ui library
-gem 'jquery-ui-rails'
+gem 'jquery-ui-rails', '~> 5.0.0'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
@@ -50,6 +50,16 @@ group :production do
   # Used by Heroku to serve static assets such as images and stylesheets.
   gem 'rails_12factor'
 end
+
+# pry gems
+gem "pry"
+gem "pry-doc"
+gem 'pry-byebug'
+gem 'pry-stack_explorer'
+
+gem 'bootstrap-sass', '~> 3.2.0'
+# for automatic browser prefixes in css
+gem 'autoprefixer-rails'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

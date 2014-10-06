@@ -10,10 +10,13 @@
 	<%= favicon_link_tag 'd-favicon.png' %>
 	<meta name="description" content="Derrick Mar is an undergraduate at UC Berkeley double majoring in Business and Computer Science. Browse his projects and more!">
 </head>
+
 <body>
+	<div class="container">
 		<%= yield %>
 		<footer>
 			<%= render 'layouts/footer' %>
 		</footer>
+	</div>
 </body>
 </html>

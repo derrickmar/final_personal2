@@ -1,0 +1,9 @@
+When I run check my test4.in and test5.in (in tests/correct directory) fail with the error stated below.
+
+test4: FAIL (Program 1: process shut down)
+test5: FAIL (Program 1: terminated on exception (AttributeError("'Action' object has no attribute 'error_msg'",)))
+Failed 2 out of 4 tests
+
+I cannot figure out what's wrong with both of these tests. I have ran these commands on the console individually and it seems to work.
+
+To produce this error just run make check.

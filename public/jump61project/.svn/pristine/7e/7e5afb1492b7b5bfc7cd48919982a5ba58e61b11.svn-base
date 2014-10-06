@@ -1,0 +1,86 @@
+package jump61;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JButton;
+import java.awt.GridLayout;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+/**
+ *
+ * @author derrickmar1215
+ */
+
+public class GameGui {
+
+    /** holds game. */
+    private Game game;
+    /** entire Window. */
+    private JFrame frame;
+    /** panel for board of game. */
+    private JPanel gamePanel;
+    /** pixels for board. */
+    public static final int PIXELS = 600;
+
+    /** GameGui constructor. Take in the current game CURRGAME. */
+    public GameGui(Game currgame) {
+        game = currgame;
+        game.start();
+        frame = new JFrame("Jump 61");
+        frame.setSize(PIXELS, PIXELS);
+        frame.setDefaultCloseOperation(javax.swing.WindowConstants.
+                                       EXIT_ON_CLOSE);
+        gamePanel = new JPanel();
+        gamePanel = setBoard(gamePanel);
+        frame.add(gamePanel);
+        frame.setVisible(true);
+    }
+
+    /** set the Board after ever move. Transforms PANEL, by returning
+     *  edited JPanel */
+    public JPanel setBoard(JPanel panel) {
+        panel.removeAll();
+        Square[][] currBoard = game.getMutableBoard().getcurrBoard();
+        int N = currBoard.length;
+        panel.setLayout(new GridLayout(N, N));
+        for (int i = 0; i < N; i += 1) {
+            for (int j = 0; j < N; j += 1) {
+                Square square = currBoard[i][j];
+                JButton btn = new JButton(square.getStringRep());
+                if (square.getColor() == Color.WHITE) {
+                    btn.setBackground(java.awt.Color.white);
+                } else if (square.getColor() == Color.RED) {
+                    btn.setBackground(java.awt.Color.red);
+                } else {
+                    btn.setBackground(java.awt.Color.blue);
+                }
+                panel.add(btn);
+                btn.addActionListener(new ButtonAction(i + 1, j + 1));
+            }
+        }
+        return panel;
+    }
+
+    /** Inner class that controls actions to button. */
+    class ButtonAction implements ActionListener {
+        /** ButtonAction constructor that takes in R and C for row
+         *  and column for Makemove. */
+        ButtonAction(int r, int c) {
+            row = r;
+            col = c;
+        }
+
+        /** action performed with mouseclick event E. */
+        public void actionPerformed(ActionEvent e) {
+            game.makeMove(row, col);
+            game.aiMove();
+            GameGui.this.gamePanel = setBoard(GameGui.this.gamePanel);
+            GameGui.this.gamePanel.revalidate();
+        }
+
+        /** Instance variable Row. */
+        private int row;
+        /** Instance variable Col. */
+        private int col;
+    }
+}

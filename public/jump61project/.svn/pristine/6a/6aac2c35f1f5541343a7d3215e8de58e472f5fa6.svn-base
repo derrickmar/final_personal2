@@ -1,0 +1,61 @@
+package jump61;
+import static jump61.Color.*;
+
+/** An object for squares within the board
+ *  @author Derrick Mar
+ */
+
+class Square {
+
+    private int _spots;
+    private Color _color;
+    private int jumpingbound;
+    private String stringRep;
+
+    Square(Color color, int spots) {
+        _color = color;
+        _spots = spots;
+        updateStringRep();
+    }
+
+    String getStringRep() {
+        return stringRep;
+    }
+
+    void updateStringRep() {
+        // System.out.println("got to updateStringRep in square");
+        if (this._spots == 0) {
+            stringRep = "--";
+        } else if (this._color == Color.RED) {
+            stringRep = String.format("%d" + "r", _spots);
+        } else if (this._color == Color.BLUE) {
+            stringRep = String.format("%d" + "b", _spots);
+        } else {
+            System.err.println("invalid color");
+        }
+        //System.out.println("stringRep in square is " + stringRep);
+    }
+
+
+    Color getColor() {
+        //System.out.println("got to getColor in Square returning: " + _color);
+        return _color;
+    }
+
+    int getSpots() {
+        return _spots;
+    }
+
+    void add (int spots) {
+        _spots += spots;
+    }
+
+    void changeSpots(int spots) {
+        _spots = spots;
+    }
+
+    void changeColor(Color color) {
+        _color = color;
+    }
+
+}

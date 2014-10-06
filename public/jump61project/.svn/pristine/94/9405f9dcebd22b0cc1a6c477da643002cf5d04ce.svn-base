@@ -1,0 +1,159 @@
+package jump61;
+import java.util.List;
+import java.util.ArrayList;
+import java.lang.reflect.Method;
+
+/** An automated Player.
+ *  @author Derrick Mar
+ */
+class AI extends Player {
+
+    /** A new player of GAME initially playing COLOR that chooses
+     *  moves automatically.
+     */
+    AI(Game game, Color color) {
+        super(game, color);
+    }
+
+    @Override
+    void makeMove() {
+        System.out.println("got to makeMove in AI");
+        Game game = getGame();
+        Board mutBoard = getMutableBoard();
+        //System.out.println(mutBoard.constructDump());
+        int[] result = minmax(getColor(), mutBoard, 2, Integer.MIN_VALUE, Integer.MAX_VALUE);
+        mutBoard.addSpot(getColor(), result[1], result[2]);
+    }
+
+    @Override
+    void makeMove(int row, int col) {
+        return;
+    }
+
+    /** Return the minimum of CUTOFF and the minmax value of board B
+     *  (which must be mutable) for player P to a search depth of D
+     *  (where D == 0 denotes evaluating just the next move).
+     *  If MOVES is not null and CUTOFF is not exceeded, set MOVES to
+     *  a list of all highest-scoring moves for P; clear it if
+     *  non-null and CUTOFF is exceeded. the contents of B are
+     *  invariant over this call. */
+    private int[] minmax(Color p, Board b, int d, int alpha, int beta) {
+        System.out.println("got to minmax: depth = " + d);
+        System.out.println(b.constructDump());
+        List<int[]> nextMoves = generateMoves(p, b);
+        int currentScore;
+        int bestRow = -1;
+        int bestCol = -1;
+        //System.out.println("board going in to for loop");
+        //System.out.println(b.constructDump());
+        if (d == 0 || b.checkForWin()) {
+            System.out.println("heuristic = " +  staticEval(b));
+            int heuristic =  staticEval(b);
+            return new int[] {heuristic, bestRow, bestCol};
+        } else {
+            for (int[] move: nextMoves) {
+                System.out.println("entering next iteration of for loop. Board is");
+                System.out.println(b.constructDump());
+                Board nextcopyBoard = new MutableBoard(b, b.size(), b.getMove());
+                if (p == getColor()) {
+                    System.out.println("Going into blue part");
+                    nextcopyBoard.addSpot(p, move[0], move[1]);
+                    System.out.println("calling minmax: " + p.opposite() + " " + "nextcopyBoard " +  (d-1) + " " +  alpha + " " + beta);
+                    currentScore = minmax(p.opposite(), nextcopyBoard, d - 1, alpha, beta)[0];
+                    if (currentScore >= alpha) {
+                        System.out.println("alpha update: " + alpha);
+                        alpha = currentScore;
+                        bestRow = move[0];
+                        bestCol = move[1];
+                    }
+                } else {
+                    System.out.println("Going into red part");
+                    nextcopyBoard.addSpot(p, move[0], move[1]);
+                    System.out.println("nextcopyboard after addSpot");
+                    System.out.println(nextcopyBoard.constructDump());
+                    //System.out.println("b after addSpot");
+                    //System.out.println(b.constructDump());
+                    System.out.println("calling minmax: " + p.opposite() + " " + "nextcopyBoard " + (d-1) + " " +  alpha + " " + beta);
+                    currentScore = minmax(p.opposite(), nextcopyBoard, d - 1, alpha, beta)[0];
+                    System.out.println("current score is " + currentScore);
+                    if (currentScore <= beta) {
+                        beta = currentScore;
+                        System.out.println("beta update: " + beta);
+                        bestRow = move[0];
+                        bestCol = move[1];
+                    }
+                }
+                if (alpha >= beta) {
+                    System.out.println("pruning!");
+                    break;
+                }
+            }
+        }
+        //System.out.println("returning: " + beta + " " + bestRow + " " + bestCol);
+        return new int[] {(p == getColor()) ? alpha : beta, bestRow, bestCol};
+    }
+
+
+    private List<int[]> generateMoves(Color p, Board b) {
+        System.out.println("got to generateMoves");
+        //System.out.println(b.constructDump());
+        // System.out.println("size: " + b.size());
+        List<int[]> possibleMoves = new ArrayList<int[]>(0);
+        Square[][] currBoard = b.getcurrBoard();
+        //System.out.println(currBoard);
+        if (b.checkForWin()) {
+            return possibleMoves;
+        }
+        // need to figure out what's wrong with currBoard.length
+        // System.out.println(currBoard.length);
+        for (int i = 0; i < b.size(); i += 1) {
+            for (int j = 0; j < b.size(); j += 1) {
+                int[] currMove = new int[2];
+                if (currBoard[i][j].getColor() == p
+                    || currBoard[i][j].getColor() == Color.WHITE) {
+                    currMove[0] = i;
+                    currMove[1] = j;
+                    possibleMoves.add(currMove);
+                }
+            }
+        }
+        System.out.print("possible moves are: ");
+        for (int m = 0; m < possibleMoves.size(); m += 1) {
+            System.out.print("[" + possibleMoves.get(m)[0] + ", "
+                             +  possibleMoves.get(m)[1] + "]" + " ");
+        }
+        return possibleMoves;
+    }
+
+    /** Returns heuristic value of board B for player P.
+     *  Higher is better for P. */
+    private int staticEval(Board b) {
+        int value = 0;
+        Square[][] currBoard = b.getcurrBoard();
+        //System.out.println("board going into static Eval");
+        //System.out.println(b.constructDump());
+        if (b.checkForWin()) {
+            if (b.announceWinner() != getColor()) {
+                value = Integer.MIN_VALUE;
+            } else {
+                value = Integer.MAX_VALUE;
+            }
+        } else {
+            for (int i = 0; i < currBoard.length; i += 1) {
+                for (int j = 0; j < currBoard[i].length; j += 1) {
+                    if (currBoard[i][j].getColor() == getColor()) {
+                        value += currBoard[i][j].getSpots() * 10;
+                        value += 10;
+                    }
+                    if (currBoard[i][j].getColor()
+                        == getColor().opposite()) {
+                        value -= currBoard[i][j].getSpots() * 10;
+                        value -= 10;
+                    }
+
+                }
+            }
+        }
+        return value;
+    }
+}

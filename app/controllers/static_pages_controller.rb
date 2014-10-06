@@ -2,9 +2,9 @@ class StaticPagesController < ApplicationController
   def home
   end
 
-  def contact
+  def blog
   end
 
-  def about
+  def crud
   end
 end
