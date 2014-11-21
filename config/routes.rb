@@ -1,9 +1,13 @@
 Rails.application.routes.draw do
+  mount RailsBlog::Engine, at: "/rails_blog"
   root 'static_pages#home'
 
   get 'static_pages/home'
 
-  resources :posts
+  # resources :posts
+
+  # routes for railsblog
+  get 'railsblog/crud_part_1', to: 'railsblog#crud_part_1'
 
   # match 'blog' => 'tweets#create'
 

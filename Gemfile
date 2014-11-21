@@ -36,6 +36,8 @@ group :development, :test do
 	# Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
 	gem 'spring'
 	gem 'rspec-rails', '2.13.1'
+  gem "better_errors"
+  gem "binding_of_caller"
 end
 
 group :test do
@@ -60,6 +62,8 @@ gem 'pry-stack_explorer'
 gem 'bootstrap-sass', '~> 3.2.0'
 # for automatic browser prefixes in css
 gem 'autoprefixer-rails'
+
+gem 'rails_blog', path: "../rails_blog"
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
