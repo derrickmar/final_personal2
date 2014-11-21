@@ -1,0 +1,123 @@
+<%= image_tag("rails_blog/tip.png", class: 'question_mark_image') %>
+	<div class="question"> 
+		<span>Building the basic task app from scratch</span>
+		<span class="glyphicon glyphicon-chevron-down expanding-arrow"></span>
+	</div>
+	<div class="box-description hidden">
+		Create a new rails app
+		<pre><code class="language-bash">> rails new tasks_app
+> cd task_app</code></pre>
+		</br>
+		Create a new Task model with a description of type string and important of type boolean,
+		<pre><code class="language-bash">> rails generate model Task description:string important:boolean</code></pre>
+		</br>
+		Migrate the Task model to the database
+		<pre><code class="language-bash">> rake db:migrate</code></pre>
+		</br>
+		Generate a tasks_controller
+		<pre><code class="language-bash">> rails generate controller Tasks</code></pre>
+		</br>
+		Let's add bootstrap to quickly make a acceptable frontend. We'll also include better errors for kicks. Add these lines to your Gemfile:
+		<div class="file-title">Gemfile</div>
+		<pre><code class="language-ruby">gem 'bootstrap-sass', '~> 3.3.1'
+gem "better_errors"
+gem "binding_of_caller"</code></pre>
+		</br>
+		Install the gems
+		<pre><code class="language-bash">> bundle install</code></pre>
+		</br>
+		Add RESTful routes for tasks and change the root route to the index action of the task controller.
+		</br>
+		<div class="file-title">routes.rb</div>
+		<pre><code class="language-ruby">root 'tasks#index'
+resources :tasks</code></pre>
+		</br>
+		In our tasks_controller.rb let's add the appropriate code for the index and create action. All of this should familiar to you by now.
+		<div class="file-title">tasks_controller.rb</div>
+		<pre><code class="language-ruby">def index
+	# create a new task for the task form
+	@task = Task.new
+	# query all the tasks to display in a table
+	@tasks = Task.all
+end
+
+def create
+	@task = Task.new(task_params)
+	@task.save
+	redirect_to root_path
+end
+
+private
+# strong parameters
+def task_params
+	params.require(:task).permit(:important, :description)
+end</code></pre>
+		</br>
+		Now we'll create the index view. Create a new file <span class="inline-code">app/views/tasks/index.html.erb</span>. Add the following html and embedded ruby below. It may seem like a lot of html but all were doing is adding an form to create tasks and displaying all the tasks in a table.
+		</br>
+		<div class="file-title">index.html.erb</div>
+		<pre><code class="language-markup">&lt;div class="container"> 
+	&lt;div class="row">
+		&lt;div class="col-xs-6 col-xs-offset-3">
+			&lt;h1> Add a Test &lt;/h1>
+			&lt;!-- Error flash div that we'll use later -->
+			&lt;div class="alert alert-danger hidden">
+			&lt;/div>
+			&lt;!-- Bootstrap inline form to create a task -->
+			&lt;%= form_for @task, html: { class: 'form-inline', id: 'task_form', role: 'form'} do |f| %>
+				&lt;div class="form-group">
+					&lt;%= label_tag(:description, "Description:") %>
+					&lt;%= f.text_field :description, class: 'form-control task_desc' %>
+				&lt;/div>
+				&lt;div class="checkbox">
+			    &lt;label>
+			    	Important?
+			      &lt;%= f.check_box :important, class: "task_checkbox" %>
+			    &lt;/label>
+		  	&lt;/div>
+				&lt;%= f.submit "Create", class: "btn btn-primary" %>
+			&lt;% end %>
+
+			&lt;h1> Tasks &lt;/h1>
+			&lt;!-- Display all the tasks in a bootstrap table -->
+			&lt;table class="table table-striped" id="schools_table">
+				&lt;thead>
+			        &lt;tr>
+			          &lt;th>Task ID&lt;/th>
+			          &lt;th>Description&lt;/th>
+			          &lt;th>Important&lt;/th>
+			        &lt;/tr>
+			  &lt;/thead>
+			  &lt;tbody id="task_table_body">
+					&lt;% @tasks.each do |t| %>
+							&lt;tr class="clickableRow" %>
+								&lt;td>&lt;%= t.id %>&lt;/td>
+								&lt;td>&lt;%= t.description %>&lt;/td>
+								&lt;td>&lt;%= t.important %>&lt;/td>
+							&lt;/tr>
+					&lt;% end %>
+				&lt;/tbody>
+			&lt;/table>
+		&lt;/div>
+	&lt;/div>
+&lt;/div></code></pre>
+			</br>
+		Let's add a little bit of css to make the inline-form look better.
+		<div class="file-title">tasks.css.scss</div>
+				<pre><code class="language-sass">@import "bootstrap-sprockets";
+@import "bootstrap";
+
+/** hide the error flash div when it is empty */
+.hidden {
+	display: none;
+}
+.task_desc {
+	width: 290px !important;
+}
+.checkbox {
+	margin: 0 10px;
+}</code></pre>
+
+		You have completed the basic app that we'll be using for this minitopic lecture!
+		
+</div>

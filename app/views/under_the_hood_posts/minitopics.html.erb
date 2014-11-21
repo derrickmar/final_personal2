@@ -1,0 +1,121 @@
+<h1>Minitopics</h1>
+<h4>In this lecture, we will be introduced to three new topics:</h4>
+<ul class="init-desc">
+	<li>AJAX in Rails</li>
+	<li>Deploying your app to Heroku</li>
+	<li>Rails Associations</li>
+</ul>
+<h2>The basic app</h2>
+<p>
+	We will use a simple rails app to get started. The app has one model: Task. There is one view that consists of a inline form to add tasks and a table that shows all the tasks that have been added.
+	</br>
+	</br>
+	If you want to build the template from scratch see the tip box below.
+</p> 
+
+<div class="info-box tip-box">
+	<%= render 'tasks_template' %>
+</div>
+
+</br>
+Or you can clone the repo. Additionally, you will probably want to push your changes to your own repo rather than to mine. You may also want to pull in changes from me in the future. To do this, follow these steps:
+<ol>
+	<li>Find the repo here: https://github.com/dmarsupastar/tasks_template</li>
+	<li>Clone the repo: <pre><code class="language-bash">> git clone git@github.com:dmarsupastar/tasks_template.git</code></pre>If you type <span class="inline-code"> git remote -v </span> you'll see that origin still points to my repository. We don't want this since you want to push to your own repository</li>
+	<li>Create your own github repository. Go to https://github.com/ and click +New Repository</li>
+	<li>Now rename my remote from origin to upstream. This allows you to pull in patches from me when specified.
+	<pre><code class="language-bash">> git remote rename origin upstream</code></pre>
+	</li>
+	<li>Add your own remote from the repository you just created. Replace URL_TO_GITHUB_REPO with the actual name of your remote:
+		<pre><code class="language-bash">> git clone git remote add origin URL_TO_GITHUB_REPO</code></pre>
+	</li>
+</ol>
+</br>
+Now fire up that rails server to see the app! Add a couple of tasks. It should look something like this.
+<%= image_tag 'rails_blog/tasks_template.png', class: 'full_image' %>
+</br>
+<h2>Minitopic 1: AJAX in Rails</h2>
+<h4>What is AJAX?</h4>
+<p>
+Ajax allows browsers to update parts of a web page, without reloading the whole page
+</p>
+<h4>Why use it?</h4>
+<p>
+<strong> It's a better user experience. </strong> Right now in our app, our browser reloads everytime we add a new tasks. That's quite annoying since we'll probably be adding many tasks in a short period of time. AJAX allows you to add tasks without reloading the page.
+</p>
+</br>
+To enable an AJAX on a form rather than the browser's normal submit mechanism, add the <span class="inline-code"> remote: true </span> option to the <span class="inline-code"> form_for </span> helper.
+<div class="file-title">index.html.erb</div>
+<pre><code class="language-markup">&lt;%= form_for @task, html: { class: 'form-inline', id: 'task_form', role: 'form'}, remote: true do |f| %></code></pre>
+</br>
+Because the form's remote option is set to true, the request will be posted to the TasksController as an Ajax request, looking for JavaScript. In order for your rails app to detect this AJAX request we need to write a respond_to block in our create action that responds when the MIME type is javascript.
+<div class="file-title">tasks_controller.rb</div>
+<pre><code class="language-ruby">def create
+		@task = Task.new(task_params)
+		respond_to do |format|
+			if @task.save
+				format.html { redirect_to root_path } # support a non-ajax call
+				format.js # support an ajax call
+			else
+				format.html { redirect_to root_path }
+				format.js { render :template => 'tasks/error.js.erb' }
+			end
+		end
+  end</code></pre>
+</br>
+Now we need to write the actual Javascript code for the server to respond with. 
+This will be sent and executed on the client side.
+</br>
+</br>
+By default, we have a corresponding app/views/users/create.js.erb view file that will be sent over if the task is saved succcessfully. Let's create the file and write the appropriate javascript and jquery.
+<div class="file-title">create.js.erb</div>
+<pre><code class="language-javascript">$('.alert-danger').addClass('hidden');
+var content = '&lt;tr>\
+	&lt;td>&lt;%= @task.id %>&lt;/td>\
+	&lt;td>&lt;%= @task.description %>&lt;/td>\
+	&lt;td>&lt;%= @task.important %>&lt;/td>\
+&lt;/tr>'
+$('#task_table_body').append(content);
+$('.task_desc').val("");
+$('.task_checkbox').attr("checked", false);</code></pre>
+</br>
+Wala!! Try adding a task and you will now see that the browser is not reloading when you submit the form. This is the magic of AJAX. A lot more fluid huh?
+</br>
+</br>
+However, you can still submit empty tasks. Let's add a presence validation in our Task model.
+<div class="file-title">task.rb</div>
+<pre><code class="language-ruby">validates :description, presence: true</code></pre>
+</br>
+If you try submitting the form with any empty description, you will see that no task gets added since it is not passing the validation error. However, we are not showing the flash message because our task_controller <span class="inline-code"> create </span> action says to respond with <span class="inline-code"> error.js.erb</span>, but the template doesn't exist yet. Let's create <span class="inline-code">app/views/users/error.js.erb</span> and write the javascript and jquery to show the error message.
+<div class="file-title">error.js.erb</div>
+<pre><code class="language-javascript">$('.alert-danger').text('');
+&lt;% @task.errors.full_messages.each do |err| %>
+	$('.alert-danger').append("• &lt;%= err %>")
+&lt;% end %>
+$('.alert-danger').removeClass('hidden');</code></pre>
+</br>
+And just like that, we have enabled AJAX for adding tasks and error validations.
+<h2>Minitopic 2: Deploying on Heroku</h2>
+Now that we have a simple AJAX-enabled rails app, let's deploy it to Heroku for the world to see.
+</br>
+</br>
+The first thing we want to do is add two productions that enable you to deploy to heroku smoothly. Edit your <span class="inline-code">Gemfile</span> as below. Notice we put <span class="inline-code">sqlite</span> and <span class="inline-code">better_errors</span> related gems in development. We add 
+<pre><code class="language-javascript">group :development do
+	gem 'sqlite3'
+	gem "better_errors"
+	gem "binding_of_caller"
+end
+
+group :production do
+	gem 'rails_12factor', group: :production
+	gem 'pg'
+end</code></pre>
+<div class="info-box question-box">
+	<%= render 'heroku_gems' %>
+</div>
+
+
+
+
+
+

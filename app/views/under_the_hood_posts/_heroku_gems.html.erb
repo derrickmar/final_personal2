@@ -1,0 +1,11 @@
+<%= image_tag("rails_blog/question_mark.png", class: 'question_mark_image') %>
+	<div class="question"> 
+		<span>What are the rails_12_factor and pg gems?</span>
+		<span class="glyphicon glyphicon-chevron-down expanding-arrow"></span>
+	</div>
+	<div class="box-description hidden">
+		The <span class="inline-code">rails_12_factor</span> gem allows logging on Heroku and automatically precompiling assets when deploying your application (recall PCM: Pre-compilation, Concatentation, and Minification from the asset pipeline lecture).
+	</br>
+	</br>
+	The <span class="inline-code">pg</span> gem enables you to use the PostgreSQL database in production. This is the database that Heroku uses. <%= link_to 'Go Here', 'https://devcenter.heroku.com/articles/sqlite3', target: '_blank' %> to understand why you cannot use Sqlite3 on Heroku.
+	</div>
