@@ -1,3 +1,14 @@
+GIT
+  remote: git@github.com:dmarsupastar/rails_code_blog.git
+  revision: 78d6057504415401afa754b0d9b9e62088b88135
+  specs:
+    rails_blog (0.0.1)
+      autoprefixer-rails
+      bootstrap-sass (~> 3.2.0)
+      jquery-rails
+      rails (~> 4.1.6)
+      sass-rails (>= 3.2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -31,7 +42,7 @@ GEM
       activerecord (>= 2.3.0)
       rake (>= 0.8.7)
     arel (5.0.1.20140414130214)
-    autoprefixer-rails (4.0.0.1)
+    autoprefixer-rails (4.0.1)
       execjs
     better_errors (2.0.0)
       coderay (>= 1.0.0)
@@ -207,6 +218,7 @@ DEPENDENCIES
   pry-stack_explorer
   rails (= 4.1.6)
   rails_12factor
+  rails_blog!
   rspec-rails (= 2.13.1)
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)
