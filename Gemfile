@@ -61,7 +61,7 @@ gem 'pry-stack_explorer'
 gem 'bootstrap-sass', '~> 3.2.0'
 # for automatic browser prefixes in css
 gem 'autoprefixer-rails'
-gem 'rails_blog', git: "git@github.com:dmarsupastar/rails_code_blog.git"
+gem 'rails_blog', github: "dmarsupastar/rails_code_blog"
 
 
 # gem 'rails_code_blog', git: "https://7571487bae134ce3d85e1ca7a11e7b112c4f3a4:x-oauth-basic@github.com/dmarsupastar/rails_code_blog.git"
