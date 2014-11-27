@@ -1,5 +1,5 @@
 GIT
-  remote: git@github.com:dmarsupastar/rails_code_blog.git
+  remote: git://github.com/dmarsupastar/rails_code_blog.git
   revision: 6bc5b1ae05c06d6c777bb557f17eaa62f5453a97
   specs:
     rails_blog (0.0.1)
