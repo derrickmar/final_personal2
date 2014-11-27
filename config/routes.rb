@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
-  # mount RailsBlog::Engine, at: "/rails_blog"
+  mount RailsBlog::Engine, at: "/rails_blog"
 
-  get 'under_the_hood_posts/minitopics'
   root 'static_pages#home'
 
   get 'static_pages/home'

@@ -635,3 +635,10 @@
 			@include scale(1.03);
 		}
 	}
+
+	.rails_blog {
+		position: absolute;
+		color: $primary-color;
+		top: 5px;
+		right: -100px
+	}
