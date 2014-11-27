@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  # mount RailsBlog::Engine, at: "/rails_blog"
+  mount RailsBlog::Engine, at: "/rails_blog"
 
   root 'static_pages#home'
 
