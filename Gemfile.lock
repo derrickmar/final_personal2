@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/dmarsupastar/rails_code_blog.git
-  revision: 6bc5b1ae05c06d6c777bb557f17eaa62f5453a97
+  revision: 9bba8dd91799a001f8f790847d40958949779d76
   specs:
     rails_blog (0.0.1)
       autoprefixer-rails
