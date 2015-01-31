@@ -1,5 +1,7 @@
-PATH
-  remote: ../rails_blog
+GIT
+  remote: git://github.com/derrickmar/rails_code_blog.git
+  revision: 71b2905ae6dc18778530a6249935e93b4eda10c9
+  branch: master
   specs:
     rails_blog (0.0.1)
       autoprefixer-rails
